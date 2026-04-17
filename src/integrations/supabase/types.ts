@@ -14,7 +14,137 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bookings: {
+        Row: {
+          advance_paid: number
+          client_name: string
+          created_at: string
+          event_date: string
+          event_type: string
+          guests: number
+          id: string
+          notes: string | null
+          phone: string
+          slot: string
+          status: string
+          total_amount: number
+          updated_at: string
+        }
+        Insert: {
+          advance_paid?: number
+          client_name: string
+          created_at?: string
+          event_date: string
+          event_type: string
+          guests?: number
+          id?: string
+          notes?: string | null
+          phone: string
+          slot: string
+          status?: string
+          total_amount?: number
+          updated_at?: string
+        }
+        Update: {
+          advance_paid?: number
+          client_name?: string
+          created_at?: string
+          event_date?: string
+          event_type?: string
+          guests?: number
+          id?: string
+          notes?: string | null
+          phone?: string
+          slot?: string
+          status?: string
+          total_amount?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      leads: {
+        Row: {
+          budget: number | null
+          created_at: string
+          estimated_date: string | null
+          event_type: string
+          guests: number | null
+          id: string
+          name: string
+          notes: string | null
+          phone: string
+          source: string
+          stage: string
+          updated_at: string
+        }
+        Insert: {
+          budget?: number | null
+          created_at?: string
+          estimated_date?: string | null
+          event_type: string
+          guests?: number | null
+          id?: string
+          name: string
+          notes?: string | null
+          phone: string
+          source?: string
+          stage?: string
+          updated_at?: string
+        }
+        Update: {
+          budget?: number | null
+          created_at?: string
+          estimated_date?: string | null
+          event_type?: string
+          guests?: number | null
+          id?: string
+          name?: string
+          notes?: string | null
+          phone?: string
+          source?: string
+          stage?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      payments: {
+        Row: {
+          amount: number
+          booking_id: string
+          created_at: string
+          id: string
+          note: string | null
+          payment_date: string
+          payment_mode: string
+        }
+        Insert: {
+          amount: number
+          booking_id: string
+          created_at?: string
+          id?: string
+          note?: string | null
+          payment_date?: string
+          payment_mode?: string
+        }
+        Update: {
+          amount?: number
+          booking_id?: string
+          created_at?: string
+          id?: string
+          note?: string | null
+          payment_date?: string
+          payment_mode?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
