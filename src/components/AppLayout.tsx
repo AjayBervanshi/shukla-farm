@@ -3,12 +3,13 @@ import { LayoutDashboard, CalendarDays, Target, Wallet, Menu, X } from "lucide-r
 import { useState, type ReactNode } from "react";
 import { format } from "date-fns";
 
-const NAV = [
+type NavItem = { to: string; label: string; icon: typeof LayoutDashboard; exact?: boolean };
+const NAV: NavItem[] = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { to: "/bookings", label: "Bookings", icon: CalendarDays },
   { to: "/leads", label: "Leads", icon: Target },
   { to: "/payments", label: "Payments", icon: Wallet },
-] as const;
+];
 
 export function AppLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
