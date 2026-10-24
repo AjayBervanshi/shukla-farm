@@ -1,0 +1,151 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap");
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --font-display: "Outfit", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "DM Mono", monospace;
+}
+
+:root {
+  --radius: 1rem; /* 16px radius for that plush SaaS look */
+  
+  /* Backgrounds: Deep Navy #0B0F1A */
+  --background: #0B0F1A;
+  --foreground: #F3F4F6;
+  
+  /* Lighter Surfaces */
+  --surface: #111827;
+  --card: #151D30;
+  --card-foreground: #F9FAFB;
+  --popover: #111827;
+  --popover-foreground: #F9FAFB;
+  
+  /* Accent: Warm Gold #D4AF37 */
+  --gold: #D4AF37;
+  --gold-light: #FBEFAD;
+  --primary: #D4AF37;
+  --primary-foreground: #0B0F1A;
+  
+  /* Secondary & Muted */
+  --secondary: #1F2937;
+  --secondary-foreground: #F3F4F6;
+  --muted: #1F2937;
+  --muted-foreground: #9CA3AF;
+  --accent: #2E3A52; /* Hover emphasis */
+  --accent-foreground: #F9FAFB;
+  
+  /* Status Colors */
+  --destructive: #EF4444; 
+  --destructive-foreground: #FEF2F2;
+  --success: #10B981; /* Available slot / success */
+  --warning: #F59E0B; /* Pending / Warning */
+  --danger: #EF4444;  /* Booked / Error */
+  
+  --border: #374151; /* Soft separators */
+  --input: #374151;
+  --ring: rgba(212, 175, 55, 0.5); /* Gold ring on focus */
+  
+  /* Charts */
+  --chart-1: #D4AF37;
+  --chart-2: #FBEFAD;
+  --chart-3: #10B981;
+  
+  /* Sidebar */
+  --sidebar: #0B0F1A;
+  --sidebar-foreground: #F3F4F6;
+  --sidebar-primary: #D4AF37;
+  --sidebar-primary-foreground: #0B0F1A;
+  --sidebar-accent: #1F2937;
+  --sidebar-accent-foreground: #F3F4F6;
+  --sidebar-border: #1F2937;
+  --sidebar-ring: rgba(212, 175, 55, 0.5);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    /* Very subtle gradient to break up flatness */
+    background-image:
+      radial-gradient(ellipse at top right, rgba(212, 175, 55, 0.05), transparent 50%),
+      radial-gradient(ellipse at bottom left, rgba(212, 175, 55, 0.02), transparent 50%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em; /* Tighter tracking for modern display headers */
+  }
+
+  .font-mono-num { 
+    font-family: var(--font-sans); /* Use sans but with mono features */
+    font-variant-numeric: tabular-nums; 
+  }
+}
+
+@layer components {
+  .luxury-card {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  .luxury-card-hover {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .luxury-card-hover:hover {
+    border-color: rgba(212, 175, 55, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(212, 175, 55, 0.1);
+  }
+  .gold-text {
+    color: var(--color-gold);
+  }
+}
+
+@media print {
+  body * { visibility: hidden; }
+  .print-area, .print-area * { visibility: visible; }
+  .print-area { position: absolute; left: 0; top: 0; width: 100%; background: white; color: black; }
+}
